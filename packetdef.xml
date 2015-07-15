@@ -1,0 +1,676 @@
+<packetdef version="3.3" desc="CIGI 3.3 packet definition format" bitsgroup="8" basepacket="BasePacket" namespace="Cigi33">
+  <!-- ************* -->
+  <!-- QUALIFICATORS -->
+  <!-- ************* -->  
+  <qualificator name="IGModeState" type="enum" prefix="IGMS_">
+    <enum name="Reset/Standby" value="0" />
+    <enum name="Operate" value="1" />
+    <enum name="Debug" value="2" />
+    <enum name="Offline Maintenance" value="3" />
+  </qualificator>
+
+  <qualificator name="EntityState" type="enum" prefix="ES_">
+    <enum name="Inactive/Standby" value="0"/>
+    <enum name="Active" value="1" />
+    <enum name="Destroyed" value="2" />
+  </qualificator>
+
+  <qualificator name="TimestampState" type="enum" prefix="TSS_">
+    <enum name="Invalid" value="0" />
+    <enum name="Valid" value="1" />
+  </qualificator>
+
+  <qualificator name="AttachState" type="enum" prefix="AS_">
+    <enum name="Detach" value="0" />
+    <enum name="Attach" value="1" />
+  </qualificator>
+
+  <qualificator name="GenericBoolState" type="enum" prefix="GBS_">
+    <enum name="Disabled" value="0" />
+    <enum name="Enabled" value="1" />
+  </qualificator>
+
+  <qualificator name="GenericValidState" type="enum" prefix="VS_">
+    <enum name="Invalid" value="0" />
+    <enum name="Valid" value="1" />
+  </qualificator>
+
+  <qualificator name="VisibleState" type="enum" prefix="VS_">
+    <enum name="Occluded" value="0" />
+    <enum name="Visible" value="1" />
+  </qualificator>
+
+  <qualificator name="InheritAlphaState" type="enum" prefix="IAS_">
+    <enum name="Not Inherited" value="0" />
+    <enum name="Inherited" value="1" />
+  </qualificator>
+
+  <qualificator name="ClampState" type="enum" prefix="CLAMP_">
+    <enum name="No Clamp" value="0" />
+    <enum name="Non-Conformal" value="1" />
+    <enum name="Conformal" value="2" />
+  </qualificator>
+
+  <qualificator name="AnimDirectionState" type="enum" prefix="ANIMDIR_">
+    <enum name="Forward" value="0" />
+    <enum name="Backward" value="1" />
+  </qualificator>
+
+  <qualificator name="AnimLoopMode" type="enum" prefix="ANIMLOOP_">
+    <enum name="One Shot" value="0" />
+    <enum name="Continuous" value="1" />
+  </qualificator>
+
+  <qualificator name="AnimState" type="enum" prefix="ANIM_">
+    <enum name="Stop" value="0" />
+    <enum name="Pause" value="1" />
+    <enum name="Play" value="2" />
+    <enum name="Continue" value="3" />
+  </qualificator>
+
+  <qualificator name="DOFSelectState" type="enum" prefix="DOFSEL_">
+    <enum name="Not Used" value="0" />
+    <enum name="X Offset" value="1" />
+    <enum name="Y Offset" value="2" />
+    <enum name="Z Offset" value="3" />
+    <enum name="Yaw" value="4" />
+    <enum name="Pitch" value="5" />
+    <enum name="Roll" value="6" />
+  </qualificator>
+
+  <qualificator name="RateControlCSState" type="enum" prefix="RCCS_">
+    <enum name="World/Parent" value="0" />
+    <enum name="Local" value="1" />
+  </qualificator>
+
+  <qualificator name="WeatherLayerState" type="enum" prefix="LAYER_" >
+    <enum name="Ground Fog" value="0" />
+    <enum name="Cloud Layer 1" value="1" />
+    <enum name="Cloud Layer 2" value="2" />
+    <enum name="Cloud Layer 3" value="3" />
+    <enum name="Rain" value="4" />
+    <enum name="Snow" value="5" />
+    <enum name="Sleet" value="6" />
+    <enum name="Hail" value="7" />
+    <enum name="Sand" value="8" />
+    <enum name="Dust" value="9" />
+  </qualificator>
+
+  <qualificator name="WeatherCloudType" type="enum" prefix="CLOUD_" >
+    <enum name="None" value="0" />
+    <enum name="Altocumulus" value="1" />
+    <enum name="Altostratus" value="2" />
+    <enum name="Cirrocumulus" value="3" />
+    <enum name="Cirrostratus" value="4" />
+    <enum name="Cirrus" value="5" />
+    <enum name="Cumulonimbus" value="6" />
+    <enum name="Cumulus" value="7" />
+    <enum name="Nimbostratus" value="8" />
+    <enum name="Stratocumulus" value="9" />
+    <enum name="Stratus" value="10" />
+    <enum name="Custom 1" value="11" />
+    <enum name="Custom 2" value="12" />
+    <enum name="Custom 3" value="13" />
+    <enum name="Custom 4" value="14" />
+    <enum name="Custom 5" value="15" />
+  </qualificator>
+
+  <qualificator name="WeatherScopeState" type="enum" prefix="SCOPE_" >
+    <enum name="Global" value="0" />
+    <enum name="Regional" value="1" />
+    <enum name="Entity" value="2" />
+  </qualificator>
+
+  <qualificator name="SensorPolarityState" type="enum" prefix="SPOL_">
+    <enum name="White hot" value="0" />
+    <enum name="Black hot" value="1" />
+  </qualificator>
+
+  <qualificator name="SensorTrackState" type="enum" prefix="TS_">
+    <enum name="White" value="0" />
+    <enum name="Black" value="1" />
+  </qualificator>
+
+  <qualificator name="SensorTrackModeState" type="enum" prefix="TMS_">
+    <enum name="Off" value="0" />
+    <enum name="Force Correlate" value="1" />
+    <enum name="Scene" value="2" />
+    <enum name="Target" value="3" />
+    <enum name="Ship" value="4" />
+    <enum name="Custom 1" value="5" />
+    <enum name="Custom 2" value="6" />
+    <enum name="Custom 3" value="7" />
+  </qualificator>
+
+  <qualificator name="SensorResponseType" type="enum" prefix="SRT_">
+    <enum name="Normal" value="0" />
+    <enum name="Extended" value="1" />
+  </qualificator>
+  
+  <qualificator name="MirrorModeState" type="enum" prefix="MM_" >
+    <enum name="None" value="0" />
+    <enum name="Horizontal" value="1" />
+    <enum name="Vertical" value="2" />
+    <enum name="Horizontal And Vertical" value="3" />
+  </qualificator>
+
+  <qualificator name="PixelReplicationState" type="enum" prefix="PRM_" >
+    <enum name="None" value="0" />
+    <enum name="1x2" value="1" />
+    <enum name="2x1" value="2" />
+    <enum name="2x2" value="3" />
+    <enum name="Custom 1" value="4" />
+    <enum name="Custom 2" value="5" />
+    <enum name="Custom 3" value="6" />
+    <enum name="Custom 4" value="7" />
+  </qualificator>
+
+  <qualificator name="ProjectionType" type="enum" prefix="PROJ_">
+    <enum name="Perspective" value="0" />
+    <enum name="Orthographic Parallel" value="1" />
+  </qualificator>
+
+  <qualificator name="ReorderState" type="enum" prefix="REORDER_">
+    <enum name="No Reorder" value="0" />
+    <enum name="Bring To Top" value="1" />
+  </qualificator>
+
+  <qualificator name="HATHOTRequestType" type="enum" prefix="HHRqT_">
+    <enum name="HAT" value="0" />
+    <enum name="HOT" value="1" />
+    <enum name="Extended" value="2" />
+  </qualificator>
+
+  <qualificator name="HATHOTResponseType" type="enum" prefix="HHRT_">
+    <enum name="HAT" value="0" />
+    <enum name="HOT" value="1" />
+  </qualificator>
+
+  <qualificator name="LOSRequestType" type="enum" prefix="LOSRT_">
+    <enum name="Basic" value="0" />
+    <enum name="Extended" value="1" />
+  </qualificator>
+
+  <qualificator name="GeodeticEntityCS" type="enum" prefix="GECS_">
+    <enum name="Geodetic" value="0" />
+    <enum name="Entity" value="1" />
+  </qualificator>
+
+  <qualificator name="EarthRefModelType" type="enum" prefix="ERM_">
+    <enum name="WGS 84" value="0" />
+    <enum name="Host Defined" value="1" />
+  </qualificator>
+
+  <!-- *********** -->
+  <!-- STREAM info -->
+  <!-- *********** -->
+  <stream>
+    <loader create="true" />
+    <saver create="true" />
+    <instantiator type="binary" create="true" offset="0" bits="8" />
+  </stream>
+
+  <!-- ************ -->
+  <!-- PACKET PARTS -->
+  <!-- ************ -->
+  <packet name="header" generate="false" size="2">
+    <field name="Packet ID" bits="8" desc="" unsigned="true" readonly="true" instantiator="true"/>
+    <field name="Packet Size" bits="8" desc="" unsigned="true" units="bytes" readonly="true" />
+  </packet>
+
+  <!-- ************* -->
+  <!-- IG CONTROL -->
+  <!-- ************* -->
+  <packet name="IG Control" size="24" desc="The IG Control packet is used to control the IG operational ..." >
+    <include name="header" values="0=1;1=24" />
+    <field name="Major Version" bits="8" value="3" desc="" unsigned="true" readonly="true"/>
+    <field name="Database Number" bits="8" value="0" desc="" />
+    <field name="IG Mode" bits="2" value="0" qualificator="IGModeState"/>  
+    <field name="Timestamp Valid" bits="1" value="0" qualificator="TimestampState"/>
+    <field name="Extra/Interpolation mode" bits="1" value="0" qualificator="GenericBoolState"/>
+    <field name="Minor Version" bits="4" value="3" unsigned="true" readonly="true"/>
+	  <field padding="true" bits="8" />
+    <field name="ByteSwap Magic Number" bits="16" value="32768" unsigned="true" readonly="true"/>
+    <field name="Host Frame Number" bits="32" unsigned="true" />
+    <field name="Timestamp" bits="32" unsigned="true" units="10 microseconds"/>
+    <field name="Last IG Frame Number" bits="32" unsigned="true"/>
+    <field padding="true" bits="32"/>
+  </packet>
+
+  <!-- ************* -->
+  <!-- ENTITY CONTROL -->
+  <!-- ************* -->
+  <packet name="Entity Control" size="48" desc="The Entity Control packet is used to control position..." bincopy="false">
+    <include name="header" values="0=2;1=48" />
+    <field name="Entity ID" bits="16" unsigned="true" value="0" />
+    <field name="Entity State" bits="2" qualificator="EntityState" value="0" />
+    <field name="Attach State" bits="1" qualificator="AttachState" value="1" />
+    <field name="Collision Detection Enable" bits="1" qualificator="GenericBoolState" value="0" />
+    <field name="Inherit Alpha" bits="1" qualificator="InheritAlphaState" value="0" />
+    <field name="Ground/Ocean Clamp" bits="2" qualificator="ClampState" value="0" />
+    <field padding="true" bits="1" />
+    <field name="Animation Direction" bits="1" qualificator="AnimDirState" value="0" />
+    <field name="Animation Loop Mode" bits="1" qualificator="AnimLoopState" value="0" />
+    <field name="Animation State" bits="2" qualificator="AnimState" value="0" />
+    <field name="Linear ExtInt Enable" bits="1" qualificator="GenericBoolState" value="0" />
+    <field padding="true" bits="3" />
+    <field name="Alpha" bits="8" unsigned="true" value ="255" />
+    <field padding="rue" bits="8" />
+    <field name="Entity Type" bits="16" unsigned="true" value="0" />
+    <field name="Parent ID" bits="16" unsigned="true" value="0" />
+    <field name="Roll" real="true" bits="32" value="0.0f" />
+    <field name="Pitch" real="true" bits="32" value="0.0f" />
+    <field name="Yaw" real="true" bits="32" value="0.0f" />
+    <field name="Latitude/X-Offset" real="true" bits="64" value="0.0" />
+    <field name="Longitude/Y-Offset" real="true" bits="64" value="0.0" />
+    <field name="Altitude/Z-Offset" real="true" bits="64" value="0.0" />
+  </packet>
+
+  <!-- *************************************** -->
+  <!-- CONFORMAL CLAMPED ENTITY CONTROL-->
+  <!-- *************************************** -->
+  <packet name="Conformal Clamped Entity Control" size="24" desc="The Conformal Clamped Entity Control parameter is ...">
+    <include name="header" values="0=3;1=24" />
+    <field name="Entity ID" bits="16" unsigned="true" value="0" />
+    <field name="Yaw" real="true" bits="32" value="0.0f" />
+    <field name="Latitude" real="true" bits="64" value="0.0" />
+    <field name="Longitude" real="true" bits="64" value="0.0" />
+  </packet>
+
+  <!-- *************************************** -->
+  <!-- COMPONENT CONTROL-->
+  <!-- *************************************** -->
+  <packet name="Component Control" size="32" desc="">
+    <include name="header" values="0=4;1=32" />
+    <field name="Component ID" bits="16" unsigned="true" value="0" />
+    <field name="Instance ID" bits="16" unsigned="true" value="0" />
+    <field name="Component Class" bits="6" value="0" />
+    <field padding="true" bits="2" />
+    <field name="Component State" bits="8" value="0" />
+    <field name="Component Data 1" bits="32" unsigned="true" value="0" />
+    <field name="Component Data 2" bits="32" unsigned="true" value="0" />
+    <field name="Component Data 3" bits="32" unsigned="true" value="0" />
+    <field name="Component Data 4" bits="32" unsigned="true" value="0" />
+    <field name="Component Data 5" bits="32" unsigned="true" value="0" />
+    <field name="Component Data 6" bits="32" unsigned="true" value="0" />
+  </packet>
+
+  <!-- *************************************** -->
+  <!-- ARTICULATED PART CONTROL-->
+  <!-- *************************************** -->
+  <packet name="Articulated Part Control" size="32" desc="">
+    <include name="header" values="0=6;1=32" />
+    <field name="Entity ID" bits="16" unsigned="true" value="0" />
+    <field name="Articulated Part ID" bits="8" unsigned="true" value="0" />
+    <field name="Articulated Part Enable" bits="1" qualificator="GenericBoolState" value="1" />
+    <field name="X Offset Enable" bits="1" qualificator="GenericBoolState" value="1" />
+    <field name="Y Offset Enable" bits="1" qualificator="GenericBoolState" value="1" />
+    <field name="Z Offset Enable" bits="1" qualificator="GenericBoolState" value="1" />
+    <field name="Roll Enable" bits="1" qualificator="GenericBoolState" value="1" />
+    <field name="Pitch Enable" bits="1" qualificator="GenericBoolState" value="1" />
+    <field name="Yaw Enable" bits="1" qualificator="GenericBoolState" value="1" />
+    <field padding="true" bits="1" />
+    <field padding="true" bits="16" />
+    <field name="X Offset" bits="32" real="true" value="0.0" />
+    <field name="Y Offset" bits="32" real="true" value="0.0" />
+    <field name="Z Offset" bits="32" real="true" value="0.0" />
+    <field name="Roll" bits="32" real="true" value="0.0" />
+    <field name="Pitch" bits="32" real="true" value="0.0" />
+    <field name="Yaw" bits="32" real="true" value="0.0" />
+  </packet>
+
+  <!-- *************************************** -->
+  <!-- SHORT ARTICULATED PART CONTROL-->
+  <!-- *************************************** -->
+  <packet name="Short Articulated Part Control" size="16" desc="">
+    <include name="header" values="0=7;1=16" />
+    <field name="Entity ID" bits="16" unsigned="true" value="0" />
+    <field name="Articulated Part ID 1" bits="8" unsigned="true" value="0" />
+    <field name="Articulated Part ID 2" bits="8" unsigned="true" value="0" />
+    <field name="DOF Select 1" bits="3" qualificator="DOFSelectState" value="0" />
+    <field name="DOF Select 2" bits="3" qualificator="DOFSelectState" value="0" />
+    <field name="Articulated Part Enable 1" bits="1" qualificator="GenericBoolState" value="1" />
+    <field name="Articulated Part Enable 2" bits="1" qualificator="GenericBoolState" value="1" />
+    <field padding="true" bits="8" />
+    <field name="DOF 1" bits="32" real="true" value="0.0f" />
+    <field name="DOF 2" bits="32" real="true" value="0.0f" />
+  </packet>
+
+  <!-- *************************************** -->
+  <!-- RATE CONTROL-->
+  <!-- *************************************** -->
+  <packet name="Rate Control" size="32" desc="">
+    <include name="header" values="0=8;1=32" />
+    <field name="Entity ID" bits="16" unsigned="true" value="0" />
+    <field name="Articulated Part ID" bits="8" unsigned="true" value="0" />
+    <field name="Apply to Articulated Part" bits="1" qualificator="GenericBoolState" value="0" />
+    <field name="Coordinate System" bits="1" qualificator="RateControlCSState" value="0" />
+    <field padding="true" bits="16" />
+    <field name="X Linear Rate" bits="32" real="true" value="0.0f" />
+    <field name="Y Linear Rate" bits="32" real="true" value="0.0f" />
+    <field name="Z Linear Rate" bits="32" real="true" value="0.0f" />
+    <field name="Roll Angular Rate" bits="32" real="true" value="0.0f" />
+    <field name="Pitch Angular Rate" bits="32" real="true" value="0.0f" />
+    <field name="Yaw Angular Rate" bits="32" real="true" value="0.0f" />
+  </packet>
+
+  <!-- *************************************** -->
+  <!-- CELESTIAL SPHERE CONTROL -->
+  <!-- *************************************** -->
+  <packet name="Celestial Sphere Control" size="16" desc="">
+    <include name="header" values="0=9;1=16" />
+    <field name="Hour" bits="8" unsigned="true" value="0" />
+    <field name="Minute" bits="8" unsigned="true" value="0" />
+    <field name="Ephemeris Model Enable" bits="1" qualificator="GenericBoolState" value="1" />
+    <field name="Sun Enable" bits="1" qualificator="GenericBoolState" value="0" />
+    <field name="Moon Enable" bits="1" qualificator="GenericBoolState" value="0" />
+    <field name="Star Field Enable" bits="1" qualificator="GenericBoolState" value="0" />
+    <field name="Date/Time Valid" bits="1" qualificator="GenericValidState" value="0" />
+    <field padding="true" bits="3" />
+    <field padding="true" bits="16" />
+    <field padding="true" bits="8" />
+    <field name="Date" bits="32" unsigned="true" value="0"/>
+    <field name="Star Field Intensity" bits="32" real="true" value="0.0f" />
+  </packet>
+
+
+  <!-- *************************************** -->
+  <!-- ATMOSPHERE CONTROL -->
+  <!-- *************************************** -->
+  <packet name="Atmosphere Control" size="32" desc="">
+    <include name="header" values="0=10;1=32" />
+    <field name="Atmospheric Model Enable" bits="1" qualificator="GenericBoolState" value="0" />
+    <field padding="true" bits="7" />
+    <field name="Global Humidity" bits="8" unsigned="true" />
+    <field name="Global Air Temperature" bits="32" real="true" />
+    <field name="Global Visibility Range" bits="32" real="true" />
+    <field name="Global Horizon Wind Speed" bits="32" real="true" />
+    <field name="Global Vertical Wind Speed" bits="32" real="true" />
+    <field name="Global Wind Direction" bits="32" real="true" />
+    <field name="Global Barometric Pressure" bits="32" real="true" />
+    <field padding="true" bits="32"/>
+  </packet>
+
+
+  <!-- *************************************** -->
+  <!-- WEATHER CONTROL -->
+  <!-- *************************************** -->
+  <packet name="Weather Control" size="56" desc="">
+    <include name="header" values="0=12;1=56" />
+    <field name="Entity/Region ID" bits="16" unsigned="true" />
+    <field name="Layer ID" bits="8" unsigned="true" value="0" desc="Use WeatherLayerState. Values 10-255 are defined by IG"/>
+    <field name="Humidity" bits="8" unsigned="true" value="0" />
+    <field name="Weather Enable" bits="1" qualificator="GenericBoolState" value="0" />
+    <field name="Scud Enable" bits="1" qualificator="GenericBoolState" value="0" />
+    <field name="Random Winds Enable" bits="1" qualificator="GenericBoolState" value="0" />
+    <field name="Random Lightning Enable" bits="1" qualificator="GenericBoolState" value="0" />
+    <field name="Cloud Type" bits="4" qualificator="WeatherCloudType" value="0" />
+    <field name="Scope" bits="2" qualificator="WeatherScopeState" value="0"/>
+    <field name="Severity" bits="3" value="0" />
+    <field padding="true" bits="3" />
+    <field name="Air Temperature" bits="32" real="true" value="0.0f" />
+    <field name="Visiblity Range" bits="32" real="true" value="0.0f" />
+    <field name="Scud Frequency" bits="32" real="true" value="0.0f" />
+    <field name="Coverage" bits="32" real="true" value="0.0f" />
+    <field name="Base Elevation" bits="32" real="true" value="0.0f" />
+    <field name="Thickness" bits="32" real="true" value="0.0f" />
+    <field name="Transition Band" bits="32" real="true" value="0.0f" />
+    <field name="Horizontal Wind Speed" bits="32" real="true" value="0.0f" />
+    <field name="Vertical Wind Speed" bits="32" real="true" value="0.0f" />
+    <field name="Wind Direction" bits="32" real="true" value="0.0f" />
+    <field name="Barometric Pressure" bits="32" real="true" value="0.0f" />
+    <field name="Aerosol Concentration" bits="32" real="true" value="0.0f" />
+  </packet>
+
+  <!-- *************************************** -->
+  <!-- VIEW CONTROL -->
+  <!-- *************************************** -->
+  <packet name="View Control" size="32" desc="">
+    <include name="header" values="0=16;1=32" />
+    <field name="View ID" bits="16" unsigned="true" value="0"/>
+    <field name="Group ID" bits="8" unsigned="true" value="0"/>
+    <field name="X Offset Enable" bits="1" qualificator="GenericBoolState" value="0" />
+    <field name="Y Offset Enable" bits="1" qualificator="GenericBoolState" value="0" />
+    <field name="Z Offset Enable" bits="1" qualificator="GenericBoolState" value="0" />
+    <field name="Roll Enable" bits="1" qualificator="GenericBoolState" value="0" />
+    <field name="Pitch Enable" bits="1" qualificator="GenericBoolState" value="0" />
+    <field name="Yaw Enable" bits="1" qualificator="GenericBoolState" value="0" />
+    <field padding="true" bits="2"/>
+    <field name="Entity ID" bits="16" unsigned="true" value="0"/>
+    <field name="X Offset" bits="32" real="true" value="0.0f"/>
+    <field name="Y Offset" bits="32" real="true" value="0.0f"/>
+    <field name="Z Offset" bits="32" real="true" value="0.0f"/>
+    <field name="Roll" bits="32" real="true" value="0.0f"/>
+    <field name="Pitch" bits="32" real="true" value="0.0f"/>
+    <field name="Yaw" bits="32" real="true" value="0.0f"/>
+  </packet>
+
+  <!-- *************************************** -->
+  <!-- SENSOR CONTROL -->
+  <!-- *************************************** -->
+  <packet name="Sensor Control" size="24" desc="">
+    <include name="header" values="0=17;1=24" />
+    <field name="View ID" bits="16" unsigned="true" value="0"/>
+    <field name="Sensor ID" bits="8" unsigned="true" value="0"/>
+    <field name="Sensor Enable" bits="1" qualificator="GenericBoolState" value="0" />
+    <field name="Polarity" bits="1" qualificator="SensorPolarityState" value="0" />
+    <field name="Line by Line Dropout Enable" bits="1" qualificator="GenericBoolState" value="0" />
+    <field name="Automatic Gain" bits="1" qualificator="GenericBoolState" value="0" />
+    <field name="Track White/Black" bits="1" qualificator="SensorTrackState" value="0" />
+    <field name="Track Mode" bits="3" qualificator="SensorTrackModeState" value="0" />
+    <field name="Response Type" bits="1" qualificator="SensorResponseType" value="0" />
+    <field padding="true" bits="7" />
+    <field padding="true" bits="8" />
+    <field name="Gain" bits="32" real="true" value="0.0f"/>
+    <field name="Level" bits="32" real="true" value="0.0f"/>
+    <field name="AC Coupling" bits="32" real="true" value="0.0f"/>
+    <field name="Noise" bits="32" real="true" value="0.0f"/>
+  </packet>
+
+  <!-- *************************************** -->
+  <!-- TRAJECTORY DEFINITION -->
+  <!-- *************************************** -->
+  <packet name="Trajectory Definition" size="24" desc="">
+    <include name="header" values="0=20;1=24" />
+    <field name="Entity ID" bits="16" unsigned="true" value="0"/>
+    <field name="Acceleration X" bits="32" real="true" value="0.0f"/>
+    <field name="Acceleration Y" bits="32" real="true" value="0.0f"/>
+    <field name="Acceleration Z" bits="32" real="true" value="0.0f"/>
+    <field name="Retardation Rate" bits="32" real="true" value="0.0f"/>
+    <field name="Terminal Velocity" bits="32" real="true" value="0.0f"/>
+  </packet>
+
+  <!-- *************************************** -->
+  <!-- VIEW DEFINITION -->
+  <!-- *************************************** -->
+  <packet name="View Definition" size="32" desc="">
+    <include name="header" values="0=21;1=32" />
+    <field name="View ID" bits="16" unsigned="true" value="0"/>
+    <field name="Group ID" bits="8" unsigned="true" value="0"/>
+    <field name="Near Enable" bits="1" qualificator="GenericBoolState" value="0" />
+    <field name="Far Enable" bits="1" qualificator="GenericBoolState" value="0" />
+    <field name="Left Enable" bits="1" qualificator="GenericBoolState" value="0" />
+    <field name="Right Enable" bits="1" qualificator="GenericBoolState" value="0" />
+    <field name="Top Enable" bits="1" qualificator="GenericBoolState" value="0" />
+    <field name="Bottom Enable" bits="1" qualificator="GenericBoolState" value="0" />
+    <field name="Mirror Mode" bits="2" qualificator="MirrorModeState" value="0" />
+    <field name="Pixel Replication Mode" bits="3" qualificator="PixelReplicationState" value="0" />
+    <field name="Projection Type" bits="1" qualificator="ProjectionType" value="0" />
+    <field name="Reorder" bits="1" qualificator="ReorderState" value="0" />
+    <field name="View Type" bits="3" unsigned="true" value="0" />
+    <field padding="true" bits="8" />
+    <field name="Near" bits="32" real="true" value="0.0f"/>
+    <field name="Far" bits="32" real="true" value="0.0f"/>
+    <field name="Left" bits="32" real="true" value="0.0f"/>
+    <field name="Right" bits="32" real="true" value="0.0f"/>
+    <field name="Top" bits="32" real="true" value="0.0f"/>
+    <field name="Bottom" bits="32" real="true" value="0.0f"/>
+  </packet>
+
+  <!-- *************************************** -->
+  <!-- HAT/HOT REQUEST -->
+  <!-- *************************************** -->
+  <packet name="HAT/HOT Request" size="32" desc="">
+    <include name="header" values="0=24;1=32" />
+    <field name="HAT/HOT ID" bits="16" unsigned="true" value="0"/>
+    <field padding="true" bits="8" />
+    <field name="Request Type" bits="2" qualificator="HATHOTRequestType" value="0" />
+    <field name="Coordinate System" bits="1" qualificator="GeodeticEntityCS" value="0" />
+    <field padding="true" bits="5" />
+    <field name="Update Period" bits="8" unsigned="true" value="0" />
+    <field name="Entity ID" bits="16" unsigned="true" value="0"/>
+    <field name="Latitude/X Offset" bits="64" real="true" value="0.0"/>
+    <field name="Longitude/Y Offset" bits="64" real="true" value="0.0"/>
+    <field name="Altitude/Z Offset" bits="64" real="true" value="0.0"/>
+  </packet>
+
+  <!-- *************************************** -->
+  <!-- LIE OF SIGHT SEGMENT REQUEST -->
+  <!-- *************************************** -->
+  <packet name="LOS Segment Request" size="64" desc="">
+    <include name="header" values="0=25;1=64" />
+    <field name="LOS ID" bits="16" unsigned="true" value="0"/>
+    <field name="Request Type" bits="1" qualificator="LOSRequestType" value="0" />
+    <field name="Source Point CS" bits="1" qualificator="GeodeticEntityCS" value="0" />
+    <field name="Destination Point CS" bits="1" qualificator="GeodeticEntityCS" value="0" />
+    <field name="Response CS" bits="1" qualificator="GeodeticEntityCS" value="0" />
+    <field name="Destination Entity ID Valid" bits="1" qualificator="GenericValidState" value="0" />
+    <field padding="true" bits="3" />
+    <field name="Alpha Threshold" bits="8" unsigned="true" value="0" />
+    <field name="Source Entity ID" bits="16" unsigned="true" value="0"/>
+    <field name="Source Latitude/X Offset" bits="64" real="true" value="0.0"/>
+    <field name="Source Longitude/Y Offset" bits="64" real="true" value="0.0"/>
+    <field name="Source Altitude/Z Offset" bits="64" real="true" value="0.0"/>
+    <field name="Destination Latitude/X Offset" bits="64" real="true" value="0.0"/>
+    <field name="Destination Longitude/Y Offset" bits="64" real="true" value="0.0"/>
+    <field name="Destination Altitude/Z Offset" bits="64" real="true" value="0.0"/>
+    <field name="Material Mask" bits="32" unsigned="true" value="0"/>
+    <field name="Update Period" bits="8" unsigned="true" value="0" />
+    <field padding="true" bits="8" />
+    <field name="Destination Entity ID" bits="16" unsigned="true" value="0"/>
+  </packet>
+
+  <!-- *************************************** -->
+  <!-- LINE OF SIGHT VECTOR REQUEST -->
+  <!-- *************************************** -->
+  <packet name="LOS Vector Request" size="56" desc="">
+    <include name="header" values="0=26;1=56" />
+    <field name="LOS ID" bits="16" unsigned="true" value="0"/>
+    <field name="Request Type" bits="1" qualificator="LOSRequestType" value="0" />
+    <field name="Source Point CS" bits="1" qualificator="GeodeticEntityCS" value="0" />
+    <field name="Response CS" bits="1" qualificator="GeodeticEntityCS" value="0" />
+    <field padding="true" bits="5" />
+    <field name="Alpha Threshold" bits="8" unsigned="true" value="0" />
+    <field name="Entity ID" bits="16" unsigned="true" value="0"/>
+    <field name="Azimuth" bits="32" real="true" value="0.0f"/>
+    <field name="Elevation" bits="32" real="true" value="0.0f"/>
+    <field name="Minimum Range" bits="32" real="true" value="0.0f"/>
+    <field name="Maximum Range" bits="32" real="true" value="0.0f"/>
+    <field name="Source Latitude/X Offset" bits="64" real="true" value="0.0"/>
+    <field name="Source Longitude/Y Offset" bits="64" real="true" value="0.0"/>
+    <field name="Source Altitude/Z Offset" bits="64" real="true" value="0.0"/>    
+    <field name="Material Mask" bits="32" unsigned="true" value="0"/>
+    <field name="Update Period" bits="8" unsigned="true" value="0" />
+    <field padding="true" bits="8" />
+    <field padding="true" bits="16" />
+  </packet>
+
+  <!-- *************************************** -->
+  <!-- START OF FRAME -->
+  <!-- *************************************** -->
+  <packet name="Start Of Frame" size="24" desc="">
+    <include name="header" values="0=101;1=24" />
+    <field name="Major Version" bits="8" unsigned="true" value="3" readonly="true"/>
+    <field name="Database Number" bits="8" value="0"/>
+    <field name="IG Status Code" bits="8" value="0" unsigned="true" desc="(0) Normal operation (1-255) Defined by IG"/>    
+    <field name="IG Mode" bits="2" qualificator="IGModeState" value="0" />
+    <field name="Timestamp Valid" bits="1" qualificator="GenericValidState" value="0" />
+    <field name="Earth Reference Model" bits="1" qualificator="EarthRefModelType" value="0" />
+    <field name="Minor Version" bits="4" unsigned="true" value="2" readonly="true"/>    
+    <field name="Byte Swap Magic Number" bits="16" unsigned="true" value="32768" readonly="true"/>
+    <field name="IG Frame Number" bits="32" unsigned="true" value="0"/>
+    <field name="Timestamp" bits="32" unsigned="true" value="0"/>
+    <field name="Last Host Frame Number" bits="32" unsigned="true" value="0"/>
+    <field padding="true" bits="32" />
+  </packet>
+
+
+  <!-- *************************************** -->
+  <!-- HAT/HOT RESPONSE -->
+  <!-- *************************************** -->
+  <packet name="HAT/HOT Response" size="16" desc="">
+    <include name="header" values="0=102;1=16" />
+    <field name="HAT/HOT ID" bits="16" unsigned="true" value="0"/>
+    <field name="Valid" bits="1" qualificator="GenericValidState" value="0" />
+    <field name="Response Type" bits="1" qualificator="HATHOTResponseType" value="0" />
+    <field padding="true" bits="2" />
+    <field name="Host Frame Number LSN" bits="4" unsigned="true" />
+    <field padding="true" bits="8" />
+    <field padding="true" bits="16" />
+    <field name="Height" bits="64" real="true" value="0.0" />
+  </packet>
+
+
+  <!-- *************************************** -->
+  <!-- HAT/HOT EXTENDED RESPONSE -->
+  <!-- *************************************** -->
+  <packet name="HAT/HOT Extended Response" size="40" desc="">
+    <include name="header" values="0=103;1=40" />
+    <field name="HAT/HOT ID" bits="16" unsigned="true" value="0"/>
+    <field name="Valid" bits="1" qualificator="GenericValidState" value="0" />
+    <field padding="true" bits="3" />
+    <field name="Host Frame Number LSN" bits="4" unsigned="true" />
+    <field padding="true" bits="8" />
+    <field padding="true" bits="16" />
+    <field name="HAT" bits="64" real="true" value="0.0" />
+    <field name="HOT" bits="64" real="true" value="0.0" />
+    <field name="Material Code" bits="32" unsigned="true" value="0" />
+    <field name="Normal Vector Azimuth" bits="32" real="true" value="0.0f" />
+    <field name="Normal Vector Elevation" bits="32" real="true" value="0.0f" />
+    <field padding="true" bits="32" />
+  </packet>
+
+
+  <!-- *************************************** -->
+  <!-- LINE OF SIGHT RESPONSE -->
+  <!-- *************************************** -->
+  <packet name="LOS Response" size="16" desc="">
+    <include name="header" values="0=104;1=16" />
+    <field name="LOS ID" bits="16" unsigned="true" value="0"/>
+    <field name="Valid" bits="1" qualificator="GenericValidState" value="0" />
+    <field name="Entity ID Valid" bits="1" qualificator="GenericValidState" value="0" />
+    <field name="Visible" bits="1" qualificator="VisibleState" value="0" />
+    <field padding="true" bits="1" />
+    <field name="Host Frame Number LSN" bits="4" unsigned="true" value="0"/>
+    <field name="Response Count" bits="8" unsigned="true" value="0" />
+    <field name="Entity ID" bits="16" unsigned="true" value="0"/>
+    <field name="Range" bits="64" real="true" value="0.0" />
+  </packet>
+
+  <!-- *************************************** -->
+  <!-- LINE OF SIGHT EXTENDED RESPONSE -->
+  <!-- *************************************** -->
+  <packet name="LOS Extended Response" size="56" desc="">
+    <include name="header" values="0=105;1=56" />
+    <field name="LOS ID" bits="16" unsigned="true" value="0"/>
+    <field name="Valid" bits="1" qualificator="GenericValidState" value="0" />
+    <field name="Entity ID Valid" bits="1" qualificator="GenericValidState" value="0" />
+    <field name="Range Valid" bits="1" qualificator="GenericValidState" value="0" />
+    <field name="Visible" bits="1" qualificator="VisibleState" value="0" />
+    <field name="Host Frame Number LSN" bits="4" unsigned="true" />    
+    <field name="Response Count" bits="8" unsigned="true" value="0" />
+    <field name="Entity ID" bits="16" unsigned="true" value="0"/>
+    <field name="Range" bits="64" real="true" value="0.0" />
+    <field name="Latitude/X Offset" bits="64" real="true" value="0.0" />
+    <field name="Longitude/Y Offset" bits="64" real="true" value="0.0" />
+    <field name="Altitude/Z Offset" bits="64" real="true" value="0.0" />
+    <field name="Red" bits="8" unsigned="true" value="0" />
+    <field name="Green" bits="8" unsigned="true" value="0" />
+    <field name="Blue" bits="8" unsigned="true" value="0" />
+    <field name="Alpha" bits="8" unsigned="true" value="255" />
+    <field name="Material Code" bits="32" unsigned="true" value="0" />
+    <field name="Normal Vector Azimuth" bits="32" real="true" value="0.0f" />
+    <field name="Normal Vector Elevation" bits="32" real="true" value="0.0f" />
+  </packet>
+  
+</packetdef>
